@@ -104,7 +104,7 @@ function check_ccloud_logged_in() {
   return 0
 }
 
-function version_gt() { 
+function version_gt() {
 	test "$(printf '%s\n' "$@" | sort -V | head -n 1)" != "$1";
 }
 
@@ -226,7 +226,7 @@ function check_cp() {
   type=$( confluent local version 2>/dev/null | tail -1 | awk -F: '{print $1;}' | tr '[:lower:]' '[:upper:]')
   case $type in
     *PLATFORM*)
-      return 0 ;; 
+      return 0 ;;
     *COMMUNITY*)
       return 1 ;;
     *)
@@ -248,11 +248,11 @@ function check_running_elasticsearch() {
     printf "\nTo showcase a sink connector, this script requires Elasticsearch to be listening on port $port. Please reconfigure and restart Elasticsearch and run again.\n"
     exit 1
   }
-  
+
   actual_version=$(echo $es_status | jq .version.number -r)
   if [[ $expected_version != $actual_version ]]; then
     printf "\nTo showcase a sink connector, this script requires Elasticsearch version $expected_version but the running version is $actual_version. Please run the correct version of Elasticsearch to proceed.\n"
-    exit 1
+    #exit 1
   fi
 
   return 0
@@ -273,7 +273,7 @@ function check_running_grafana() {
   actual_version=$(echo $grafana_status | jq .version -r)
   if [[ $expected_version != $actual_version ]]; then
     printf "\nTo showcase a sink connector, this script requires Grafana version $expected_version but the running version is $actual_version. Please run the correct version of Grafana to proceed.\n"
-    exit 1
+    #exit 1
   fi
 
   return 0
@@ -507,7 +507,7 @@ function validate_confluent_cloud_schema_registry() {
   return 0
 }
 
-function get_cluster_id_kafka () { 
+function get_cluster_id_kafka () {
   KAFKA_CLUSTER_ID=$(zookeeper-shell localhost:2181 get /cluster/id 2> /dev/null | grep version | jq -r .id)
   if [[ -z "$KAFKA_CLUSTER_ID" ]]; then
     echo "Failed to get Kafka cluster ID. Please troubleshoot and run again"
@@ -712,7 +712,7 @@ function ccloud_cli_set_kafka_cluster_use() {
   ccloud kafka cluster use $kafkaCluster
   echo -e "\nAssociated key $CLOUD_KEY to Confluent Cloud Kafka cluster $kafkaCluster:\n"
   ccloud kafka cluster describe $kafkaCluster
-  
+
   return 0
 }
 

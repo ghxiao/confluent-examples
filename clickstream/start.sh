@@ -25,8 +25,11 @@ run script './ksql/ksql-clickstream-demo/demo/clickstream-schema.sql';
 exit ;
 EOF
 
-(cd ksql/ksql-clickstream-demo/demo/ && ./ksql-tables-to-grafana.sh &>/dev/null)
-(cd ksql/ksql-clickstream-demo/demo/ && ./elastic-dynamic-template.sh &>/dev/null)
-(cd ksql/ksql-clickstream-demo/demo/ && ./clickstream-analysis-dashboard.sh &>/dev/null)
+#(cd ksql/ksql-clickstream-demo/demo/ && ./ksql-tables-to-grafana.sh &>/dev/null)
+#(cd ksql/ksql-clickstream-demo/demo/ && ./elastic-dynamic-template.sh &>/dev/null)
+#(cd ksql/ksql-clickstream-demo/demo/ && ./clickstream-analysis-dashboard.sh &>/dev/null)
+(cd ksql/ksql-clickstream-demo/demo/ && ./ksql-tables-to-grafana.sh)
+(cd ksql/ksql-clickstream-demo/demo/ && ./elastic-dynamic-template.sh)
+(cd ksql/ksql-clickstream-demo/demo/ && ./clickstream-analysis-dashboard.sh)
 
 echo -e "\n-> Navigate to the Grafana dashboard at http://localhost:3000/dashboard/db/click-stream-analysis.\n\nLogin with user ID admin and password admin.\n\n"
